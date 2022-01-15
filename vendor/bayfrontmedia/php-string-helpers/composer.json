@@ -1,0 +1,38 @@
+{
+  "name": "bayfrontmedia/php-string-helpers",
+  "description": "Helper class to provide useful string functions.",
+  "homepage": "https://github.com/bayfrontmedia/php-string-helpers",
+  "license" : "MIT",
+  "type": "library",
+  "keywords": [
+    "php",
+    "string",
+    "helper",
+    "helpers",
+    "function"
+  ],
+  "authors": [
+    {
+      "name": "John Robinson",
+      "email": "john@bayfrontmedia.com",
+      "homepage": "https://www.bayfrontmedia.com",
+      "role": "Developer"
+    }
+  ],
+  "funding": [
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/bayfrontmedia"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "ext-mbstring": "*",
+    "ext-iconv": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bayfront\\StringHelpers\\": "src/"
+    }
+  }
+}
