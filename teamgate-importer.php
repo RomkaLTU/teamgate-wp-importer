@@ -24,7 +24,9 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (! defined('ABSPATH')) {
+    exit;
+}
 
 /**
  * HELPER COMMENT START
@@ -53,13 +55,13 @@ const TEAMGATEIM_VERSION = '1.0.0';
 const TEAMGATEIM_PLUGIN_FILE = __FILE__;
 
 // Plugin base
-define( 'TEAMGATEIM_PLUGIN_BASE',	plugin_basename( TEAMGATEIM_PLUGIN_FILE ) );
+define('TEAMGATEIM_PLUGIN_BASE', plugin_basename(TEAMGATEIM_PLUGIN_FILE));
 
 // Plugin Folder Path
-define( 'TEAMGATEIM_PLUGIN_DIR',	plugin_dir_path( TEAMGATEIM_PLUGIN_FILE ) );
+define('TEAMGATEIM_PLUGIN_DIR', plugin_dir_path(TEAMGATEIM_PLUGIN_FILE));
 
 // Plugin Folder URL
-define( 'TEAMGATEIM_PLUGIN_URL',	plugin_dir_url( TEAMGATEIM_PLUGIN_FILE ) );
+define('TEAMGATEIM_PLUGIN_URL', plugin_dir_url(TEAMGATEIM_PLUGIN_FILE));
 
 /**
  * Load composer dependencies
@@ -79,8 +81,9 @@ require_once TEAMGATEIM_PLUGIN_DIR . 'core/class-teamgate-importer.php';
  * @since   1.0.0
  * @return  object|Teamgate_Importer
  */
-function TEAMGATEIM() {
-	return Teamgate_Importer::instance();
+function TEAMGATEIM()
+{
+    return Teamgate_Importer::instance();
 }
 
 TEAMGATEIM();
