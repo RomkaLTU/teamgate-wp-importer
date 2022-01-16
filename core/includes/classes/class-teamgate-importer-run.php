@@ -438,18 +438,24 @@ class Teamgate_Importer_Run
 
     private function update_parking_lot_fields(array $item, int $post_id): void
     {
-        $parking_number = preg_replace("/[^0-9]/", "", Arr::get($item, 'name'));
-
         update_field('field_61e28db4c5b2d', Arr::get($item, 'id'), $post_id);
         update_field('field_61e2b8394231f', $this->get_stage($item), $post_id);
         update_field('field_61e2b89d42322', $this->get_formatted_price(Arr::get($item, 'prices.0.value')), $post_id);
-        update_field('field_61e2b84642320', $parking_number, $post_id);
 
         update_field(
             'field_61e2b85442321',
             $this->get_custom_field_by_id(
                 Arr::get($item, 'customFields'),
                 18
+            ),
+            $post_id
+        );
+
+        update_field(
+            'field_61e2b84642320',
+            $this->get_custom_field_by_id(
+                Arr::get($item, 'customFields'),
+                69
             ),
             $post_id
         );
