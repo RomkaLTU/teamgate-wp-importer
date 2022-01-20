@@ -120,6 +120,7 @@ class Teamgate_Importer_Run
     public function set_flats_admin_columns(array $columns): array
     {
         unset($columns['date']);
+        $columns['external_id'] = __('ID', 'teamgate-importer');
         $columns['status'] = __('Status', 'teamgate-importer');
         $columns['stage'] = __('Stage', 'teamgate-importer');
         $columns['building'] = __('Building', 'teamgate-importer');
@@ -138,6 +139,9 @@ class Teamgate_Importer_Run
     public function set_flats_admin_columns_data(string $column, int $post_id): ?string
     {
         switch ($column) {
+            case 'external_id':
+                echo get_field('field_61e28db4c5b2d', $post_id);
+                break;
             case 'status':
                 echo get_field('field_61e2a71bf8e1e', $post_id);
                 break;
@@ -404,18 +408,12 @@ class Teamgate_Importer_Run
         );
         update_field(
             'field_61e2a6d1f8e1a',
-            $this->get_custom_field_by_id(
-                Arr::get($item, 'customFields'),
-                69
-            ),
+            $this->has_terace($item),
             $post_id
         );
         update_field(
             'field_61e2a6e4f8e1b',
-            $this->get_custom_field_by_id(
-                Arr::get($item, 'customFields'),
-                67
-            ),
+            $this->has_balcony($item),
             $post_id
         );
         update_field(
@@ -487,5 +485,25 @@ class Teamgate_Importer_Run
     private function get_formatted_price(string $rawPrice): string
     {
         return number_format_i18n($rawPrice);
+    }
+
+    private function has_balcony(array $item): bool
+    {
+        $value = $this->get_custom_field_by_id(
+            Arr::get($item, 'customFields'),
+            59
+        ) ?? [];
+
+        return in_array(67, $value);
+    }
+
+    private function has_terace(array $item): bool
+    {
+        $value = $this->get_custom_field_by_id(
+            Arr::get($item, 'customFields'),
+            59
+        ) ?? [];
+
+        return in_array(69, $value);
     }
 }
